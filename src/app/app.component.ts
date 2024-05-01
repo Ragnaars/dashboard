@@ -1,5 +1,5 @@
 import { Component, ViewChild, viewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [
     RouterOutlet,
+    RouterModule,
     MatInputModule,
     FormsModule,
     MatFormFieldModule,

@@ -43,10 +43,10 @@
 
     <mat-list role="list">
       <mat-list-item role="listitem">
-        <span style="color: white">Inicio</span>
+        <a routerLink="/cliente-create" style="color: white">Crear</a>
       </mat-list-item>
       <mat-list-item role="listitem">
-        <span style="color: white">Tareas</span>
+        <a routerLink="/cliente-list" style="color: white">Listar</a>
       </mat-list-item>
       <mat-list-item role="listitem">
         <span style="color: white">Reportes</span>
@@ -56,9 +56,7 @@
 
   <mat-sidenav-content>
     <div class="content">
-      <app-cliente-create
-        style="width: 100%; padding: 20px"
-      ></app-cliente-create>
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
