@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { PedidosService } from '../cliente-list/pedidos.service';
+import { PedidosService } from '../cliente-create/pedidos.service';
 
 @Component({
   selector: 'app-cliente-create',
@@ -23,7 +23,10 @@ export class ClienteCreateComponent {
     total: ''
   }
 
+  data : any 
+
   constructor(private pedidosSerice: PedidosService) { }
+
 
   altaPedidos() {
     console.log(this.pedidos)
@@ -38,6 +41,7 @@ export class ClienteCreateComponent {
       }, (err: any) => {
         console.log("error", err);
       })
+
 
   }
 }

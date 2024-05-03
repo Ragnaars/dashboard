@@ -14,7 +14,7 @@ export class ChartComponent implements OnInit {
 
   data: any;
   dataidcliente: any[] = [];
-  datacantidadclientes: any[] = [];
+  datacantidadpedidos: any[] = [];
   dataidpedido: any[] = [];
   datafechapedido: any[] = [];
   datatotal: any[] = [];
@@ -32,29 +32,29 @@ export class ChartComponent implements OnInit {
       if (this.data != null) {
         for (let i = 0; i < this.data.length; i++) {
           this.dataidcliente.push(this.data[i].id_cliente);
-          this.datacantidadclientes.push(this.data[i].cantidad_clientes);
+          this.datacantidadpedidos.push(this.data[i].cantidad_pedidos);
         }
       }
-      this.showchartData(this.dataidcliente, this.datacantidadclientes);
+      this.showchartData(this.dataidcliente, this.datacantidadpedidos);
     });
 
 
   }
 
-  showchartData(dataidpedido: any, datacantidadclientes: any) {
+  showchartData(dataidcliente: any, datacantidadpedidos: any) {
     // Mostrar solo los primeros 5 elementos
 
     // Array de colores
     let colors = ['red', 'blue', 'green', 'yellow', 'purple'];
 
-    console.log(dataidpedido);
+    console.log(dataidcliente);
     new Chart("myChart", {
-      type: 'doughnut',
+      type: 'bar',
       data: {
-        labels: dataidpedido,
+        labels: dataidcliente,
         datasets: [{
           label: 'Ventas totales por mes',
-          data: datacantidadclientes,
+          data: datacantidadpedidos,
           backgroundColor: colors, // Asigna los colores a las barras
           borderWidth: 1
         }]
