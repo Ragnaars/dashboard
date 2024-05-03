@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js/auto';
-import { PedidosService } from '../cliente-list/pedidos.service';
+import { Chart } from 'chart.js/auto';
+import { ChartService } from './chart.service';
 
 
 @Component({
@@ -13,51 +13,48 @@ import { PedidosService } from '../cliente-list/pedidos.service';
 export class ChartComponent implements OnInit {
 
   data: any;
-  dataidcliente: any[]=[];
-  dataidpedido: any[]=[];
-  datafechapedido: any[]=[];
-  datatotal: any[]=[];
+  dataidcliente: any[] = [];
+  datacantidadclientes: any[] = [];
+  dataidpedido: any[] = [];
+  datafechapedido: any[] = [];
+  datatotal: any[] = [];
 
 
-  constructor(private pedidosService: PedidosService) {
+  constructor(private chartService: ChartService) {
 
   }
 
 
   ngOnInit() {
-    this.pedidosService.getMethod('ventas/getPedidos.php').subscribe(resp => {
+    this.chartService.getCantPedByCli('ventas/charts/getCantPedByCli.php').subscribe(resp => {
       this.data = resp.document; // Accede al array 'document' dentro del objeto de respuesta
       console.log(this.data);
       if (this.data != null) {
         for (let i = 0; i < this.data.length; i++) {
-          this.dataidpedido.push(this.data[i].id_pedido);
           this.dataidcliente.push(this.data[i].id_cliente);
-          this.datafechapedido.push(this.data[i].fecha_pedido);
-          this.datatotal.push(this.data[i].total);
+          this.datacantidadclientes.push(this.data[i].cantidad_clientes);
         }
       }
-      this.showchartData(this.dataidcliente, this.dataidpedido, this.datafechapedido, this.datatotal);
+      this.showchartData(this.dataidcliente, this.datacantidadclientes);
     });
-    
-    
+
+
   }
 
-  showchartData(dataidpedido: any, dataidproducto: any, datafechapedido: any, datatotal: any){
+  showchartData(dataidpedido: any, datacantidadclientes: any) {
     // Mostrar solo los primeros 5 elementos
-    let labels = datafechapedido.slice(0, 5);
-    let data = datatotal.slice(0, 5);
-  
+
     // Array de colores
     let colors = ['red', 'blue', 'green', 'yellow', 'purple'];
-  
+
     console.log(dataidpedido);
     new Chart("myChart", {
-      type: 'bar',
+      type: 'doughnut',
       data: {
-        labels: labels,
+        labels: dataidpedido,
         datasets: [{
           label: 'Ventas totales por mes',
-          data: data,
+          data: datacantidadclientes,
           backgroundColor: colors, // Asigna los colores a las barras
           borderWidth: 1
         }]
@@ -71,9 +68,9 @@ export class ChartComponent implements OnInit {
       }
     });
   }
-  
-  
-  
+
+
+
 
 }
 

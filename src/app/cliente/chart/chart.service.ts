@@ -3,23 +3,15 @@ import { apiServer } from '../apiServer';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class PedidosService {
-
+export class ChartService {
   url = apiServer.url;
-
   constructor(private http: HttpClient) { }
 
-
-  postMethod(url: string, body: any): Observable<any> {
-    return this.http.post(`${this.url}${url}`, body);
-  }
-
-  getMethod(url: any): Observable<any> {
+  getCantPedByCli(url: any): Observable<any> {
     return this.http.get(`${this.url}${url}`);
   }
-
-
 }
