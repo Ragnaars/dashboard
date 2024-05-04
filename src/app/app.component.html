@@ -16,20 +16,10 @@
     }
     <h1>Dashboard</h1>
     <span class="example-spacer"></span>
-    <button
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with share icon"
-    >
-      <mat-icon>share</mat-icon>
-    </button>
+
+      <button routerLink="/login" type="button" class="btn btn-success">Iniciar sesión</button>
+      <button (click)="deleteToken()" type="button" class="btn btn-danger">Cerrar sesión</button>
+
   </mat-toolbar>
 </p>
 
@@ -51,6 +41,7 @@
       <mat-list-item role="listitem">
         <a routerLink="/chart" style="color: white">Graficos</a>
       </mat-list-item>
+
     </mat-list>
   </mat-sidenav>
 

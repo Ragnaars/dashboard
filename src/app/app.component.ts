@@ -1,8 +1,8 @@
 import { Component, ViewChild, viewChild } from '@angular/core';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatIconModule,
@@ -44,7 +45,7 @@ export class AppComponent {
   @ViewChild(MatSidenav)
   sideNav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver, private cd: ChangeDetectorRef) {
+  constructor(private observer: BreakpointObserver, private cd: ChangeDetectorRef, private router: Router) {
 
   }
 
@@ -62,5 +63,9 @@ export class AppComponent {
     });
   }
 
+  deleteToken() {
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/login');
+  }
 
 }
